@@ -1,0 +1,67 @@
+#######
+#######  Welcome to BetterPlugin Config
+#######  I used some tool to create a better configurations system
+#######
+########  Grammar :
+########  Special Character : !1 : » / !2 : « / !3 : │ / !4 : ❌ / !5 : ✔ / !6 : •
+########  Accent : "!e" : é / "/e" : è / "%e" : ê / "!a" : à / "!u" : ù
+#######
+########  Color :
+########  &e : yellow / &a : green / &b : blue / &f : blanc
+########  &k : special Magic / &1 : bold / &n : Underline / &o : Italic / &m : Striked
+########  &0 : black / &1 : dark blue / &2 : dark green / &3 : cyan / &4 : dark red
+########  &5 : violet / &6 : gold / &7 : grey / &8 : dark grey / &9 : blue
+########  &r : reset color
+#######
+######## You surely can found configuration here : https://www.github.com/betterstudio/betterstudio/FR/BetterRTP.yml
+#######
+
+Config:
+  ## Y of the location when player was teleported
+  y: 100
+  ## IA add to the Y of your location the size of the location when player was teleported
+  ## the height of the tallest block on the X Y column of your world
+  useIA: true
+  ## If you don't use multiple rtp or if you want to test you can set an default rtp tag.
+  ## When player do /rtp it execute /brtp tp <value> to the player
+  default: 'default'
+Message:
+  ## Message call when player do /brtp cooldown <rtp>
+  ## Use !cooldown! to get the cooldown number in seconds
+  ## Use !rtp! to get the rtp tag
+  cooldown-want: '&7Ton cooldown actuel est de : &3!cooldown-text!'
+  ## Message call when player do /brtp cooldown <rtp> and he isn't in cooldown
+  ## Use !rtp! to get the rtp tag
+  cooldown-no: '&7Tu n''as pas de cooldown'
+  error:
+    ## Message call when rtp instance don't exist
+    no-valid: '&3Tu n''as pas selectionner de rtp valide !'
+    ## Message call when people must pay but don't have the require money
+    no-money: '&3Tu''as pas assez de money !'
+    ## Message call when people don't have the required permission
+    no-perms: '&3Tu n''as pas la permission !'
+    ## Message call when people are in cooldown
+    in-cooldown: '&3Tu es encore en cooldown !'
+### List your rtp here
+RTP:
+  # it was the tag of your rtp
+  default:
+    min: 100
+    max: 500
+    world: 'world'
+    # in seconds
+    cooldown: 100
+    price: 20
+    actionbar-message: '§7Bonne chance !a toi en pleine nature !'
+    title-message: '§6RTP'
+    subtitle-message: '&7Tu as !et!e t!el!eport!e en !x!, 100, !z!'
+    message: '§7Tu trouveras un chateau pas tr/es loin d''ici !'
+    # default is piano
+    sound: PIANO
+    # use my plugin ItemWritter to get direct effect
+    effect:
+      first:
+        type: SPEED
+        time: 5
+        level: 1
+        particle: true

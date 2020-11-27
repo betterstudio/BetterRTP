@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'java-library'
+    id 'maven'
+    id 'fr.il_totore.manadrop' version '0.4.1-SNAPSHOT'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+import static fr.il_totore.manadrop.MinecraftRepositoryHelper.*
+import static fr.il_totore.manadrop.MinecraftDependencyHelper.*
+
+group 'fr.gabriel'
+version '0.1'
+
+repositories {
+
+    spigotSnapshot()
+    sonatype()
+
+    maven { url "http://jitpack.io" }
+    maven { url "http://nexus.hc.to/content/repositories/pub_releases"}
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+
+    compileOnly spigotApi('1.8')
+
+    compile 'fr.mrmicky:FastBoard:1.1.0'
+    compile 'com.github.betterstudio:BetterTool:1.6.1'
+
+    implementation 'net.milkbowl.vault:VaultAPI:1.7'
+
+}
+
+buildTools {
+    versions '1.8', '1.9'
+}
+
+shadowJar{
+    configurations = [project.configurations.compile]
+}

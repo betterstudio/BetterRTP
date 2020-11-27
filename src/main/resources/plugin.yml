@@ -1,0 +1,9 @@
+name: BetterRTP
+author: Gabriel
+main: fr.better.rtp.Main
+version: 0.1
+commands:
+  brtp:
+    permission: brtp.use
+softdepend :
+  - Vault
