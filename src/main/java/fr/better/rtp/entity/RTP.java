@@ -1,6 +1,7 @@
 package fr.better.rtp.entity;
 
 import fr.better.rtp.RTPMain;
+import fr.better.rtp.event.RandomTeleportEvent;
 import fr.better.tools.config.BetterConfig;
 import fr.better.tools.config.Change;
 import fr.better.tools.utils.ActionBar;
@@ -118,7 +119,7 @@ public class RTP {
     }
 
     public void teleport(Player target) {
-        this.toString();
+
         Random r = new Random();
         BetterConfig config = (BetterConfig) RTPMain.getInstance().getBetterConfig();
 
@@ -126,27 +127,29 @@ public class RTP {
         int z = r.nextInt(max-min)+min;
         int y = config.getInt("Config.y", 100);
 
-        if(config.getBoolean("Config.useIA", false)){
+        boolean useIA = config.getBoolean("Config.useIA", false);
+
+        if(useIA){
             y = getYByAnIA(world, x, z, y);
         }
 
-        Location loc = new Location(world, x, 100, z);
-        new Title(target).send(config.getMessage("RTP." + tag + ".title-message", true, "", new Change("!x!", "" + loc.getBlockX()),
-                new Change("!z!", "" + loc.getBlockZ())),
-                config.getMessage("RTP." + tag + ".subtitle-message", true, "", new Change("!x!", "" + loc.getBlockX()),
-                        new Change("!z!", "" + loc.getBlockZ())),
-                5, 5*20, 5);
-        if(message)target.sendMessage(config.getMessage("RTP." + tag + ".message", true, "",
+        Location loc = new Location(world, x, y, z);
+
+        RandomTeleportEvent event = new RandomTeleportEvent(target, useIA, loc, config.getMessage("RTP." + tag + ".actionbar-message", true, ""), config.getMessage("RTP." + tag + ".title-message", true, "", new Change("!x!", "" + loc.getBlockX()),
+                new Change("!z!", "" + loc.getBlockZ())), config.getMessage("RTP." + tag + ".subtitle-message", true, "", new Change("!x!", "" + loc.getBlockX()),
+                new Change("!z!", "" + loc.getBlockZ())), config.getMessage("RTP." + tag + ".message", true, "",
                 new Change("!x!", "" + loc.getBlockX()),
                 new Change("!z!", "" + loc.getBlockZ())));
-        new ActionBar(target).send(config.getMessage("RTP." + tag + ".actionbar-message", true, ""));
-        if(potions != null){
+        Bukkit.getPluginManager().callEvent(event);
+        if(event.isCancelled())return;
+
+        if(potions != null && event.usePotion()){
             for(PotionEffect potionEffect : potions){
                 target.addPotionEffect(potionEffect);
             }
         }
         target.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, invincibilityTime*20, 255, false));
-        if(!sound.isEmpty()){
+        if(!sound.isEmpty() && event.useSong()){
             try{
                 Sound sound = Sound.valueOf(this.sound);
                 sound.name();
@@ -155,7 +158,16 @@ public class RTP {
                 target.playNote(target.getLocation(), Instrument.PIANO, Note.natural(1, Note.Tone.A));
             }
         }
-        target.teleport(loc);
+        if(!event.getActionbar().isEmpty())new ActionBar(target).send(event.getActionbar());
+        if(!event.getTitle().isEmpty() && !event.getSub().isEmpty()){
+            new Title(target).send(event.getTitle(), event.getSub(), 5, 30, 5);
+        }else if(!event.getTitle().isEmpty()){
+            new Title(target).send(event.getTitle(), "", 5, 30, 5);
+        }else if(!event.getSub().isEmpty()){
+            new Title(target).send("", event.getSub(), 5, 30, 5);
+        }
+        if(!event.getMessage().isEmpty())target.sendMessage(event.getMessage());
+        target.teleport(event.getLocation());
     }
 
     public String toText() {
