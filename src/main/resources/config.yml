@@ -53,9 +53,9 @@ RTP:
     cooldown: 100
     price: 20
     actionbar-message: '§7Bonne chance !a toi en pleine nature !'
-    title-message: '§6RTP'
+    title-message: '&6RTP'
     subtitle-message: '&7Tu as !et!e t!el!eport!e en !x!, 100, !z!'
-    message: '§7Tu trouveras un chateau pas tr/es loin d''ici !'
+    message: '&7Tu trouveras un chateau pas tr/es loin d''ici !'
     # default is piano
     sound: PIANO
     # use my plugin ItemWritter to get direct effect

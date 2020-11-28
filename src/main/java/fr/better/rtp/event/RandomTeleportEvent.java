@@ -8,6 +8,8 @@ import org.bukkit.event.HandlerList;
 
 public class RandomTeleportEvent extends Event implements Cancellable {
 
+    private static final HandlerList HANDLER_LIST = new HandlerList();
+
     private final Player player;
 
     private final boolean useIA;
@@ -32,7 +34,7 @@ public class RandomTeleportEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return HANDLER_LIST;
     }
 
     public Player getPlayer() {

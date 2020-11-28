@@ -1,6 +1,6 @@
 name: BetterRTP
 author: Gabriel
-main: fr.better.rtp.Main
+main: fr.better.rtp.RTPMain
 version: 0.1
 commands:
   brtp:

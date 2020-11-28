@@ -75,6 +75,7 @@ public class RTP {
         this.message = config.isString("RTP." + tag + ".message");
 
         if(config.isConfigurationSection("RTP." + tag + ".effect")){
+            System.out.println("good");
             this.potions = new ArrayList<>();
 
             for(String key : config.getConfigurationSection("RTP." + tag + ".effect").getKeys(false)){
@@ -92,7 +93,7 @@ public class RTP {
         boolean particle = config.getBoolean(where + ".particle", true);
 
         if(type == null)type = PotionEffectType.SPEED;
-
+        System.out.println(new PotionEffect(type, power, time, particle).toString());
         return new PotionEffect(type, power, time, particle);
     }
 
@@ -144,6 +145,7 @@ public class RTP {
         if(event.isCancelled())return;
 
         if(potions != null && event.usePotion()){
+            System.out.println("JE");
             for(PotionEffect potionEffect : potions){
                 target.addPotionEffect(potionEffect);
             }
