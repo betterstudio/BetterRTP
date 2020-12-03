@@ -38,6 +38,7 @@ dependencies {
 
     implementation 'net.milkbowl.vault:VaultAPI:1.7'
 
+    compile 'com.yworks:yguard:2.10.0'
 }
 
 buildTools {
@@ -47,3 +48,5 @@ buildTools {
 shadowJar{
     configurations = [project.configurations.compile]
 }
+// https://www.igvault.fr/Clash-of-Clan-Accounts/KRS-Store-%2F-Lifetime-Warranty---TH11%2FLV128---King-27-Queen-34-Warden-4-Gems-1235-637043453123.html
+// https://www.igvault.fr/Clash-of-Clan-Accounts/KRS-Store-%2F-Lifetime-Warranty---TH11%2FLV111---King-28-Queen-36-Warden-1-635643357323.html

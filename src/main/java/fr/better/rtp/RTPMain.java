@@ -1,13 +1,15 @@
 package fr.better.rtp;
 
+import fr.better.rtp.entity.License;
 import fr.better.rtp.entity.PluginLibraryHandler;
 import fr.better.rtp.entity.RTP;
-import fr.better.rtp.entity.RTPApi;
+import fr.better.rtp.api.RTPApi;
 import fr.better.rtp.parameter.CooldownParam;
 import fr.better.rtp.parameter.ListParam;
 import fr.better.rtp.parameter.TPParam;
 import fr.better.tools.BetterPlugin;
 import fr.better.tools.config.BetterConfig;
+import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,14 @@ public class RTPMain extends BetterPlugin implements RTPApi {
             }
             this.rtp.add(rtp);
         }
+
+        new License("12345", "BetterRTP", "127.0.0.1:8080").verify(new License.Action() {
+            @Override
+            public void execute() {
+                System.out.println("License wasn't setup , Plugin shutdown !");
+                getServer().getPluginManager().disablePlugin(instance);
+            }
+        }, 300, this);
 
         listen(new RTPListener());
 

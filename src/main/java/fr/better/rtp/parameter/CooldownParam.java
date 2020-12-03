@@ -2,7 +2,7 @@ package fr.better.rtp.parameter;
 
 import fr.better.rtp.RTPMain;
 import fr.better.rtp.entity.RTP;
-import fr.better.rtp.entity.RTPApi;
+import fr.better.rtp.api.RTPApi;
 import fr.better.tools.command.BetterCommand;
 import fr.better.tools.config.Change;
 import org.bukkit.Bukkit;

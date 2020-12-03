@@ -1,7 +1,7 @@
 package fr.better.rtp.entity;
 
 import fr.better.rtp.RTPMain;
-import fr.better.rtp.event.RandomTeleportEvent;
+import fr.better.rtp.api.PlayerRandomTeleportEvent;
 import fr.better.tools.config.BetterConfig;
 import fr.better.tools.config.Change;
 import fr.better.tools.utils.ActionBar;
@@ -136,11 +136,14 @@ public class RTP {
 
         Location loc = new Location(world, x, y, z);
 
-        RandomTeleportEvent event = new RandomTeleportEvent(target, useIA, loc, config.getMessage("RTP." + tag + ".actionbar-message", true, ""), config.getMessage("RTP." + tag + ".title-message", true, "", new Change("!x!", "" + loc.getBlockX()),
-                new Change("!z!", "" + loc.getBlockZ())), config.getMessage("RTP." + tag + ".subtitle-message", true, "", new Change("!x!", "" + loc.getBlockX()),
-                new Change("!z!", "" + loc.getBlockZ())), config.getMessage("RTP." + tag + ".message", true, "",
-                new Change("!x!", "" + loc.getBlockX()),
-                new Change("!z!", "" + loc.getBlockZ())));
+        PlayerRandomTeleportEvent event = new PlayerRandomTeleportEvent(target, useIA, loc,
+                config.getMessage("RTP." + tag + ".actionbar-message", true, ""),
+                config.getMessage("RTP." + tag + ".title-message", true, "", new Change("!x!", "" + loc.getBlockX()),
+                new Change("!z!", "" + loc.getBlockZ()), new Change("!y!", "" + loc.getBlockY())),
+                config.getMessage("RTP." + tag + ".subtitle-message", true, "", new Change("!x!", "" + loc.getBlockX()),
+                new Change("!z!", "" + loc.getBlockZ()), new Change("!y!", "" + loc.getBlockY())),
+                config.getMessage("RTP." + tag + ".message", true, "", new Change("!x!", "" + loc.getBlockX()),
+                new Change("!z!", "" + loc.getBlockZ()), new Change("!y!", "" + loc.getBlockY())));
         Bukkit.getPluginManager().callEvent(event);
         if(event.isCancelled())return;
 

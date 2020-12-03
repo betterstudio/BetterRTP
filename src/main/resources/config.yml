@@ -3,8 +3,8 @@
 #######  I used some tool to create a better configurations system
 #######
 ########  Grammar :
-########  Special Character : !1 : » / !2 : « / !3 : │ / !4 : ❌ / !5 : ✔ / !6 : •
-########  Accent : "!e" : é / "/e" : è / "%e" : ê / "!a" : à / "!u" : ù
+########  Special Character : "!1" : "»" / "!2" : "«" / "!3" : "│" / "!4" : "❌" / "!5" : "✔" / "!6" : "•"
+########  Accent : "!e" : "é" / "/e" : "è" / "%e" : "ê" / "!a" : "à" / "!u" : "ù"
 #######
 ########  Color :
 ########  &e : yellow / &a : green / &b : blue / &f : blanc
@@ -13,8 +13,15 @@
 ########  &5 : violet / &6 : gold / &7 : grey / &8 : dark grey / &9 : blue
 ########  &r : reset color
 #######
-######## You surely can found configuration here : https://www.github.com/betterstudio/betterstudio/FR/BetterRTP.yml
+######## You surely can found configuration here in english :
+# https://github.com/betterstudio/betterstudio/blob/main/config/en/betterRTP.yml
+########
+######## Tu peux surement trouver une config en français ici :
+# https://github.com/betterstudio/betterstudio/blob/main/config/fr/betterRTP.yml
 #######
+
+####### Setup your key here. If you don't have any key, contact me to buy one : Qg#6485
+Key: 12345
 
 Config:
   ## Y of the location when player was teleported
@@ -29,19 +36,19 @@ Message:
   ## Message call when player do /brtp cooldown <rtp>
   ## Use !cooldown! to get the cooldown number in seconds
   ## Use !rtp! to get the rtp tag
-  cooldown-want: '&7Ton cooldown actuel est de : &3!cooldown-text!'
+  cooldown-want: '&7Your cooldown is : &3!cooldown-text!'
   ## Message call when player do /brtp cooldown <rtp> and he isn't in cooldown
   ## Use !rtp! to get the rtp tag
-  cooldown-no: '&7Tu n''as pas de cooldown'
+  cooldown-no: '&7You don''t have any cooldown for !rtp!'
   error:
     ## Message call when rtp instance don't exist
-    no-valid: '&3Tu n''as pas selectionner de rtp valide !'
+    no-valid: '&3You don''t have selected any valid RTP instance.'
     ## Message call when people must pay but don't have the require money
-    no-money: '&3Tu''as pas assez de money !'
+    no-money: '&3You don''t have the correct amount of money !'
     ## Message call when people don't have the required permission
-    no-perms: '&3Tu n''as pas la permission !'
+    no-perms: '&3You don''t have the permission to do that !'
     ## Message call when people are in cooldown
-    in-cooldown: '&3Tu es encore en cooldown !'
+    in-cooldown: '&3You are in cooldown !'
 ### List your rtp here
 RTP:
   # it was the tag of your rtp
@@ -52,10 +59,10 @@ RTP:
     # in seconds
     cooldown: 100
     price: 20
-    actionbar-message: '§7Bonne chance !a toi en pleine nature !'
+    actionbar-message: '&7Good luck !'
     title-message: '&6RTP'
-    subtitle-message: '&7Tu as !et!e t!el!eport!e en !x!, 100, !z!'
-    message: '&7Tu trouveras un chateau pas tr/es loin d''ici !'
+    subtitle-message: '&7You are been teleported in !x!, !y!, !z!'
+    message: '&7You must search a place for your base in the surrounding area'
     # default is piano
     sound: PIANO
     # use my plugin ItemWritter to get direct effect
